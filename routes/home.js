@@ -3,12 +3,14 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Todo = require('../models/todo')
 const { isAuthenticated } = require('../utils/middleware')
-const { homeGET, homePOST } = require('../controllers/homeController')
+const { homeGET, newTodo } = require('../controllers/homeController')
 
 const router = express.Router()
 
+router.use(express.urlencoded({extended: true}))
+
 router.get('/home', isAuthenticated, homeGET)
 
-router.post('/createtodo', homePOST)
+router.post('/newtodo', newTodo)
 
 module.exports = router
