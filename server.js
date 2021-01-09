@@ -5,7 +5,6 @@ const signUpRoutes = require('./routes/signup')
 const loginRoutes = require('./routes/login')
 const logoutRoutes = require('./routes/logout')
 const homeRoutes = require('./routes/home')
-const { db } = require('./models/user')
 
 const app = express()
 const port = 3000

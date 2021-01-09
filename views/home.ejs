@@ -8,20 +8,28 @@
 
     <%- include('./partials/headerLoggedIn') %>
         
-    <div class="row justify-content-center" style="padding-top: 20px;">
+    <div class="row justify-content-center" style="text-align: center; padding-top: 30px;">
+      <form action="/createtodo" method="POST">
+        <input type="text" placeholder="Enter Todo" name="todo">
+        <input type="submit" value="Submit">
+      </form><br><br>
+
       <div class="col-4" style="text-align: center;">
         <h5 class="text-muted"><ins>Not Complete</ins></h5>
-        <% todos.forEach(todo => { %> 
-          <% if (todo.complete === false) { %>
-            <div><%= todo.message %></div>
-        <% }}) %> 
+        <% if (todos) { %>
+          <% todos.forEach(todo => { %> 
+            <% if (todo.complete === false) { %>
+              <div><%= todo.message %></div>
+        <% }})} %>
       </div>
+
       <div class="col-4" style="text-align: center;">
         <h5 class="text-muted"><ins>Complete</ins></h5>
-        <% todos.forEach(todo => { %> 
-          <% if (todo.complete === true) { %>
-            <div><%= todo.message %></div>
-        <% }}) %> 
+        <% if (todos) { %>
+          <% todos.forEach(todo => { %> 
+            <% if (todo.complete === true) { %>
+              <div><%= todo.message %></div>
+        <% }})} %>
       </div>
     </div>
 

@@ -1,31 +1,14 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+const Todo = require('../models/todo')
 const { isAuthenticated } = require('../utils/middleware')
+const { homeGET, homePOST } = require('../controllers/homeController')
 
 const router = express.Router()
 
-const todos = [
-  {
-    message: 'Herbology homework',
-    complete: true
-  },
-  {
-    message: 'Cut hair',
-    complete: false
-  },
-  {
-    message: 'Feed Crookshanks',
-    complete: false
-  }
-]
+router.get('/home', isAuthenticated, homeGET)
 
-router.get('/home', isAuthenticated, async (req, res, next) => {
-  const token = req.headers.cookie.split('token=')[1]
-  const userId = jwt.decode(token).id
-  const user = await User.findById(userId)
-
-  res.render('home', { user, todos })
-})
+router.post('/createtodo', homePOST)
 
 module.exports = router

@@ -22,6 +22,12 @@ const userSchema = mongoose.Schema({
   }
 })
 
+userSchema.virtual('todos', {
+  ref: 'Todo',
+  localField: '_id',
+  foreignField: 'owner'
+})
+
 userSchema.plugin(uniqueValidator, { type: 'mongoose-unique-validator' })
 
 const User = mongoose.model('User', userSchema)
